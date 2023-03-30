@@ -3,17 +3,9 @@
 @section('title', 'Adminlte-Users')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>Inicio</h1>
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
-@stop
-
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
-@section('js')
-    <script> console.log('Hi!'); </script>
+    <p>Bienvenido {{ auth()->user()->name }} | {{ $msg }}</p>
 @stop
