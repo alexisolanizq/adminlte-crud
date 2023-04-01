@@ -16,32 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 Route::middleware(['auth', 'user-role:tech'])->group(function () {
-    Route::get('/', function () {
-        return view('dashboard', ['msg' => 'User role']);
-    })->name('user');
-    // Route::resource('user', UserController::class);
+    Route::resource('user', UserController::class);
 });
+
 Route::middleware(['auth', 'user-role:admin'])->group(function () {
-    Route::get('/admin', function () {
-        return view('dashboard', ['msg' => 'Admin role']);
-    })->name('admin');
-    // Route::resource('user', UserController::class);
+    Route::resource('admin', AdminController::class);
 });
 
-
-// Route::get('/dashboard', function () {
-    //     return view('dashboard');
-    // })->middleware(['auth', 'verified'])->name('dashboard');
-    
-    
-    Route::middleware('auth')->group(function () {
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    });
-    
-    
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});

@@ -32,14 +32,19 @@ class DatabaseSeeder extends Seeder
             'email' => 'alexoonizq@gmail.com',
             'area_id' => 2,
             // 'role' => 1,
-            'password' => Hash::make('password')
+            'password' => Hash::make('password'),
+            'created_at' => now(),
+            'updated_at' => now(),
         ], [
             'name' => 'Julio Vásquez',
             'email' => 'jvasquez@outlook.com',
             'area_id' => 1,
             // 'role' => 0,
-            'password' => Hash::make('password')
-
+            'password' => Hash::make('password'),
+            'created_at' => now(),
+            'updated_at' => now(),
         ]]);
+
+        User::factory(20)->create();
     }
 }

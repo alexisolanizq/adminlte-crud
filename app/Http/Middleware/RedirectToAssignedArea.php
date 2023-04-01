@@ -4,8 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpFoundation\Response;
 
 class RedirectToAssignedArea
 {
@@ -20,6 +18,10 @@ class RedirectToAssignedArea
             return $next($request);
         }
 
-        return response()->json(['Sin permisos para acceder']);
+        if (auth()->user()->area->name === 'admin') {
+            return redirect()->route('admin.index');
+        }
+        return redirect()->route('user.index');
+        // return response()->json(['Sin permisos para acceder']);
     }
 }

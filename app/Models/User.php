@@ -53,6 +53,6 @@ class User extends Authenticatable
     
     public function area(): BelongsTo
     {
-        return $this->belongsTo(Area::class, 'id');
+        return $this->belongsTo(Area::class);
     }
 }

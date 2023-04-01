@@ -32,13 +32,11 @@ class AuthenticatedSessionController extends Controller
             'password' => 'required'
         ]);
         if (auth()->attempt(['email' => $input["email"], 'area_id' => $input['area_id'], 'password' => $input['password']])) {
-            switch (auth()->user()->area->name) {
-                case 'admin':
-                    return redirect()->route('admin');
-                    break;
-                case 'tech':
-                    return redirect()->route('user');
-                    break;
+            if (auth()->user()->area->name === 'admin') {
+                return redirect()->route('admin.index');
+            }
+            if (auth()->user()->area->name === 'tech') {
+                return redirect()->route('user.index');
             }
         } else {
             return redirect()
@@ -64,6 +62,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }
