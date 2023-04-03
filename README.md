@@ -12,12 +12,7 @@
 Pasos para inicializar el proyecto:
 
 1. composer install
-2. php artisan breeze:install
-   - Option 0 (Blade)
-   - No (Dark Mode)
-   - Enter (Default value)
-3. php artisan migrate
-4. php artisan adminlte:install
-5. npm install
-6. npm run dev
-7. php artisan serve
+2. npm install
+3. php artisan migrate --seed
+4. npm run dev
+5. php artisan serve
